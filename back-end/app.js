@@ -89,7 +89,7 @@ app.post("/login", function (req, res) {
   
   const tUsername = req.body.username
   const tPassword = req.body.password
-  console.log(`${tUsername}, ${tPassword}`)
+  // console.log(`${tUsername}, ${tPassword}`) debugging
   
   if (!tUsername || !tPassword) {
     // no username or password received in the POST body... send an error
@@ -104,7 +104,7 @@ app.post("/login", function (req, res) {
       const retPass = users.password;
       // assuming we found the user, check the password is correct
       bcrypt.compare(tPassword, retPass).then(function(result) {
-        console.log(result)
+        //console.log(result) debugging
         if (result){
           const payload = { id: users.id } // some data we'll encode into the token
           const token = jwt.sign(payload, jwtOptions.secretOrKey) // create a signed token
