@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Switch, Route, Link } from "react-router-dom";
 
 import "./Homepage.css";
@@ -12,8 +12,11 @@ import SubwayLinesInfo from "./SubwayLinesInfo";
 import SubwayStation from "./SubwayStation";
 import SubwayStations from "./SubwayStations";
 import Subwaylines from "./Subwaylines";
+import Login from "./Login";
+import Signup from "./Signup";
 
 function App() {
+  const [user, setUser] = useState({})
   // add links to your pages for now
   return (
     <Switch>
@@ -23,6 +26,13 @@ function App() {
       <Route path="/stations/:id" component={SubwayStation}></Route>
       <Route exact path="/stationView" component={SubwayStation}></Route>
       <Route exact path="/lines" component={Subwaylines}></Route>
+      <Route path="/login"> 
+        <Login user = {user} setuser = {setUser} />
+      </Route>
+      <Route path="/signup"> 
+        <Signup user = {user} setuser = {setUser} />
+      </Route>
+      
     </Switch>
   );
 }
@@ -54,7 +64,6 @@ const Homepage = () => {
         onClose={handleClose}
         open={Boolean(anchorEl)}
       >
-        <MenuItem onClick={handleClose}>Map View</MenuItem>
         <Link className="App-link" to="/stations">
           {" "}
           <MenuItem onClick={handleClose}>List of Stations</MenuItem>{" "}
